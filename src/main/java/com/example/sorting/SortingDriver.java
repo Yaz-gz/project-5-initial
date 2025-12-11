@@ -3,6 +3,7 @@ package com.example.sorting;
 import org.springframework.util.StopWatch;
 
 import java.util.Arrays;
+import java.util.Comparator;
 import java.util.stream.IntStream;
 
 public class SortingDriver {
@@ -12,7 +13,8 @@ public class SortingDriver {
         // Generate array of random Integers
         Integer[] arr = IntStream.generate(() -> (int) (Math.random() * 50000))
                 .boxed()
-                .limit(10000)
+                .limit(10)
+                .sorted(Comparator.reverseOrder())
                 .toArray(Integer[]::new);
 
         Integer[] copy1 = copyArray(arr);

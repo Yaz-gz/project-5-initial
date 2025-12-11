@@ -34,7 +34,7 @@ class SortingUtilityTest {
             // Edge case: Empty array should not cause errors
             Integer[] a = {};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new Integer[]{}, a);
+            assertArrayEquals(new Integer[]{}, a, "Empty array should remain empty after sorting");
         }
 
         @Test
@@ -151,7 +151,7 @@ class SortingUtilityTest {
             // Tests generic Comparable type (String)
             String[] a = {"zebra", "apple", "mango", "banana"};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new String[]{"apple", "banana", "mango", "zebra"}, a);
+            assertArrayEquals(new String[]{"apple", "banana", "mango", "zebra"}, a, "String array not sorted alphabetically");
         }
 
         @Test
@@ -160,7 +160,7 @@ class SortingUtilityTest {
             // Tests string comparison with equal elements
             String[] a = {"dog", "cat", "dog", "ant", "cat"};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new String[]{"ant", "cat", "cat", "dog", "dog"}, a);
+            assertArrayEquals(new String[]{"ant", "cat", "cat", "dog", "dog"}, a, "String array with duplicates not sorted correctly");
         }
 
         @Test
@@ -169,7 +169,7 @@ class SortingUtilityTest {
             // Edge case: empty strings in the array
             String[] a = {"", "b", "", "a"};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new String[]{"", "", "a", "b"}, a);
+            assertArrayEquals(new String[]{"", "", "a", "b"}, a, "Array with empty strings not sorted correctly");
         }
 
         // -------------------- OTHER COMPARABLE TYPES --------------------
@@ -180,7 +180,7 @@ class SortingUtilityTest {
             // Tests another generic Comparable type
             Double[] a = {3.14, 1.41, 2.71, 0.5};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new Double[]{0.5, 1.41, 2.71, 3.14}, a);
+            assertArrayEquals(new Double[]{0.5, 1.41, 2.71, 3.14}, a, "Double array not sorted correctly");
         }
 
         @Test
@@ -189,7 +189,7 @@ class SortingUtilityTest {
             // Tests Character Comparable type
             Character[] a = {'z', 'a', 'm', 'b', 'y'};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new Character[]{'a', 'b', 'm', 'y', 'z'}, a);
+            assertArrayEquals(new Character[]{'a', 'b', 'm', 'y', 'z'}, a, "Character array not sorted correctly");
         }
 
         // -------------------- NEGATIVE NUMBER TESTS --------------------
@@ -200,7 +200,7 @@ class SortingUtilityTest {
             // Tests handling of negative numbers
             Integer[] a = {-5, 3, -1, 0, -10, 7, -3};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new Integer[]{-10, -5, -3, -1, 0, 3, 7}, a);
+            assertArrayEquals(new Integer[]{-10, -5, -3, -1, 0, 3, 7}, a, "Array with negative integers not sorted correctly");
         }
 
         @Test
@@ -209,7 +209,7 @@ class SortingUtilityTest {
             // Tests array with only negative numbers
             Integer[] a = {-2, -8, -1, -5, -3};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new Integer[]{-8, -5, -3, -2, -1}, a);
+            assertArrayEquals(new Integer[]{-8, -5, -3, -2, -1}, a, "Array with all negative integers not sorted correctly");
         }
 
         @Test
@@ -218,7 +218,7 @@ class SortingUtilityTest {
             // Tests complete range including zero
             Integer[] a = {5, -3, 0, -7, 2, 0, -1};
             SortingUtility.gnomeSort(a);
-            assertArrayEquals(new Integer[]{-7, -3, -1, 0, 0, 2, 5}, a);
+            assertArrayEquals(new Integer[]{-7, -3, -1, 0, 0, 2, 5}, a, "Mixed array with positive, negative, and zero not sorted correctly");
         }
 
         // -------------------- NULL HANDLING TESTS --------------------
@@ -230,7 +230,7 @@ class SortingUtilityTest {
             Integer[] a = null;
             assertThrows(NullPointerException.class, () -> {
                 SortingUtility.gnomeSort(a);
-            });
+            }, "Null array should throw NullPointerException");
         }
     }
 
@@ -250,7 +250,7 @@ class SortingUtilityTest {
             // Edge case: Empty array, do-while should exit immediately
             Integer[] a = {};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{}, a);
+            assertArrayEquals(new Integer[]{}, a, "Empty array should remain empty after sorting");
         }
 
         @Test
@@ -259,7 +259,7 @@ class SortingUtilityTest {
             // Edge case: Single element, no swaps should occur
             Integer[] a = {5};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{5}, a);
+            assertArrayEquals(new Integer[]{5}, a, "Single element array should remain unchanged");
         }
 
         @Test
@@ -269,7 +269,7 @@ class SortingUtilityTest {
             // Forward pass: swap, Backward pass: check (already sorted)
             Integer[] a = {2, 1};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2}, a);
+            assertArrayEquals(new Integer[]{1, 2}, a, "Two swapped elements should be sorted to [1, 2]");
         }
 
         @Test
@@ -278,7 +278,7 @@ class SortingUtilityTest {
             // Tests early termination when no swaps occur
             Integer[] a = {1, 2};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2}, a);
+            assertArrayEquals(new Integer[]{1, 2}, a, "Already sorted two elements should remain [1, 2]");
         }
 
         @Test
@@ -287,7 +287,7 @@ class SortingUtilityTest {
             // Tests early termination: forward pass makes no swaps, breaks immediately
             Integer[] a = {1, 2, 3, 4, 5};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a, "Already sorted array should remain unchanged");
         }
 
         @Test
@@ -297,7 +297,7 @@ class SortingUtilityTest {
             // Requires multiple forward and backward passes
             Integer[] a = {5, 4, 3, 2, 1};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a, "Reverse sorted array should be sorted to [1, 2, 3, 4, 5]");
         }
 
         @Test
@@ -307,7 +307,7 @@ class SortingUtilityTest {
             // swapped variable tracks if any swaps occurred
             Integer[] a = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 1, 2, 3, 3, 4, 5, 5, 6, 9}, a);
+            assertArrayEquals(new Integer[]{1, 1, 2, 3, 3, 4, 5, 5, 6, 9}, a, "Array with duplicates not sorted correctly");
         }
 
         @Test
@@ -317,7 +317,7 @@ class SortingUtilityTest {
             // swapped should remain false
             Integer[] a = {5, 5, 5, 5, 5};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{5, 5, 5, 5, 5}, a);
+            assertArrayEquals(new Integer[]{5, 5, 5, 5, 5}, a, "Array with all same elements should remain unchanged");
         }
 
         @Test
@@ -326,7 +326,7 @@ class SortingUtilityTest {
             // Typical case: random unsorted data
             Integer[] a = {64, 34, 25, 12, 22, 11, 90};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{11, 12, 22, 25, 34, 64, 90}, a);
+            assertArrayEquals(new Integer[]{11, 12, 22, 25, 34, 64, 90}, a, "Random array not sorted correctly");
         }
 
         @Test
@@ -338,7 +338,7 @@ class SortingUtilityTest {
             // This demonstrates why cocktail shaker is better than bubble sort
             Integer[] a = {90, 5, 3, 2, 1};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 5, 90}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 5, 90}, a, "Bidirectional test failed - largest at start, smallest at end not handled correctly");
         }
 
         @Test
@@ -349,7 +349,7 @@ class SortingUtilityTest {
             // Tests the forward loop: for each i in 0 to length(a) − 1
             Integer[] a = {99, 1, 2, 3, 4};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 4, 99}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 99}, a, "Forward pass failed to move large element to the right");
         }
 
         @Test
@@ -360,7 +360,7 @@ class SortingUtilityTest {
             // Tests the backward loop: for each i in length(a) − 1 to 0
             Integer[] a = {5, 4, 3, 2, 0};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{0, 2, 3, 4, 5}, a);
+            assertArrayEquals(new Integer[]{0, 2, 3, 4, 5}, a, "Backward pass failed to move small element to the left");
         }
 
         @Test
@@ -370,7 +370,7 @@ class SortingUtilityTest {
             // Pattern: high, low, high, low, high
             Integer[] a = {9, 1, 8, 2, 7, 3, 6, 4, 5};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9}, a, "Alternating pattern not sorted correctly");
         }
 
         @Test
@@ -379,7 +379,7 @@ class SortingUtilityTest {
             // Minimal case to test both forward and backward passes
             Integer[] a = {3, 1, 2};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3}, a, "Three elements not sorted correctly");
         }
 
         // -------------------- STRING TESTS --------------------
@@ -390,7 +390,7 @@ class SortingUtilityTest {
             // Tests generic Comparable type (String)
             String[] a = {"zebra", "apple", "mango", "banana"};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new String[]{"apple", "banana", "mango", "zebra"}, a);
+            assertArrayEquals(new String[]{"apple", "banana", "mango", "zebra"}, a, "String array not sorted alphabetically");
         }
 
         @Test
@@ -399,7 +399,7 @@ class SortingUtilityTest {
             // Tests string comparison with equal elements in both directions
             String[] a = {"dog", "cat", "dog", "ant", "cat"};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new String[]{"ant", "cat", "cat", "dog", "dog"}, a);
+            assertArrayEquals(new String[]{"ant", "cat", "cat", "dog", "dog"}, a, "String array with duplicates not sorted correctly");
         }
 
         @Test
@@ -408,7 +408,7 @@ class SortingUtilityTest {
             // Tests bidirectional passes with string comparisons
             String[] a = {"echo", "delta", "charlie", "bravo", "alpha"};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new String[]{"alpha", "bravo", "charlie", "delta", "echo"}, a);
+            assertArrayEquals(new String[]{"alpha", "bravo", "charlie", "delta", "echo"}, a, "Reverse sorted string array not sorted correctly");
         }
 
         // -------------------- OTHER COMPARABLE TYPES --------------------
@@ -419,7 +419,7 @@ class SortingUtilityTest {
             // Tests another generic Comparable type
             Double[] a = {3.14, 1.41, 2.71, 0.5};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Double[]{0.5, 1.41, 2.71, 3.14}, a);
+            assertArrayEquals(new Double[]{0.5, 1.41, 2.71, 3.14}, a, "Double array not sorted correctly");
         }
 
         @Test
@@ -428,7 +428,7 @@ class SortingUtilityTest {
             // Tests Character Comparable type
             Character[] a = {'z', 'a', 'm', 'b', 'y'};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Character[]{'a', 'b', 'm', 'y', 'z'}, a);
+            assertArrayEquals(new Character[]{'a', 'b', 'm', 'y', 'z'}, a, "Character array not sorted correctly");
         }
 
         // -------------------- NEGATIVE NUMBER TESTS --------------------
@@ -439,7 +439,7 @@ class SortingUtilityTest {
             // Tests handling of negative numbers
             Integer[] a = {-5, 3, -1, 0, -10, 7, -3};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{-10, -5, -3, -1, 0, 3, 7}, a);
+            assertArrayEquals(new Integer[]{-10, -5, -3, -1, 0, 3, 7}, a, "Array with negative integers not sorted correctly");
         }
 
         @Test
@@ -448,7 +448,7 @@ class SortingUtilityTest {
             // Tests array with only negative numbers
             Integer[] a = {-2, -8, -1, -5, -3};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{-8, -5, -3, -2, -1}, a);
+            assertArrayEquals(new Integer[]{-8, -5, -3, -2, -1}, a, "Array with all negative integers not sorted correctly");
         }
 
         @Test
@@ -457,7 +457,7 @@ class SortingUtilityTest {
             // Tests complete range including zero
             Integer[] a = {5, -3, 0, -7, 2, 0, -1};
             SortingUtility.cocktailShakerSort(a);
-            assertArrayEquals(new Integer[]{-7, -3, -1, 0, 0, 2, 5}, a);
+            assertArrayEquals(new Integer[]{-7, -3, -1, 0, 0, 2, 5}, a, "Mixed array with positive, negative, and zero not sorted correctly");
         }
 
         // -------------------- NULL HANDLING TESTS --------------------
@@ -469,7 +469,7 @@ class SortingUtilityTest {
             Integer[] a = null;
             assertThrows(NullPointerException.class, () -> {
                 SortingUtility.cocktailShakerSort(a);
-            });
+            }, "Null array should throw NullPointerException");
         }
     }
 
@@ -489,7 +489,7 @@ class SortingUtilityTest {
             // Edge case: Empty array
             Integer[] a = {};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{}, a);
+            assertArrayEquals(new Integer[]{}, a, "Empty array should remain empty after sorting");
         }
 
         @Test
@@ -498,7 +498,7 @@ class SortingUtilityTest {
             // Edge case: Single element
             Integer[] a = {5};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{5}, a);
+            assertArrayEquals(new Integer[]{5}, a, "Single element array should remain unchanged");
         }
 
         @Test
@@ -507,7 +507,7 @@ class SortingUtilityTest {
             // Tests basic sorting with minimal elements
             Integer[] a = {2, 1};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{1, 2}, a);
+            assertArrayEquals(new Integer[]{1, 2}, a, "Two swapped elements should be sorted to [1, 2]");
         }
 
         @Test
@@ -516,7 +516,7 @@ class SortingUtilityTest {
             // Tests that no unnecessary operations occur
             Integer[] a = {1, 2};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{1, 2}, a);
+            assertArrayEquals(new Integer[]{1, 2}, a, "Already sorted two elements should remain [1, 2]");
         }
 
         @Test
@@ -525,7 +525,7 @@ class SortingUtilityTest {
             // Tests efficiency on already sorted data
             Integer[] a = {1, 2, 3, 4, 5};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a, "Already sorted array should remain unchanged");
         }
 
         @Test
@@ -534,7 +534,7 @@ class SortingUtilityTest {
             // Tests gap sequence effectiveness on worst case
             Integer[] a = {5, 4, 3, 2, 1};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5}, a, "Reverse sorted array should be sorted to [1, 2, 3, 4, 5]");
         }
 
         @Test
@@ -544,7 +544,7 @@ class SortingUtilityTest {
             // Uses variables: gaps, n, i, j, temp
             Integer[] a = {3, 1, 4, 1, 5, 9, 2, 6, 5, 3};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{1, 1, 2, 3, 3, 4, 5, 5, 6, 9}, a);
+            assertArrayEquals(new Integer[]{1, 1, 2, 3, 3, 4, 5, 5, 6, 9}, a, "Array with duplicates not sorted correctly");
         }
 
         @Test
@@ -553,7 +553,7 @@ class SortingUtilityTest {
             // Edge case: All duplicates
             Integer[] a = {5, 5, 5, 5, 5};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{5, 5, 5, 5, 5}, a);
+            assertArrayEquals(new Integer[]{5, 5, 5, 5, 5}, a, "Array with all same elements should remain unchanged");
         }
 
         @Test
@@ -562,7 +562,7 @@ class SortingUtilityTest {
             // Typical case: random unsorted data
             Integer[] a = {64, 34, 25, 12, 22, 11, 90};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{11, 12, 22, 25, 34, 64, 90}, a);
+            assertArrayEquals(new Integer[]{11, 12, 22, 25, 34, 64, 90}, a, "Random array not sorted correctly");
         }
 
         @Test
@@ -573,7 +573,7 @@ class SortingUtilityTest {
             // Uses variables: gap, i, j, temp, n
             Integer[] a = {23, 45, 12, 67, 89, 34, 56, 78, 90, 1, 3, 5, 7, 9, 2, 4, 6, 8};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 23, 34, 45, 56, 67, 78, 89, 90}, a);
+            assertArrayEquals(new Integer[]{1, 2, 3, 4, 5, 6, 7, 8, 9, 12, 23, 34, 45, 56, 67, 78, 89, 90}, a, "Large array not sorted correctly");
         }
 
         // -------------------- STRING TESTS --------------------
@@ -584,7 +584,7 @@ class SortingUtilityTest {
             // Tests generic Comparable type (String)
             String[] a = {"zebra", "apple", "mango", "banana"};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new String[]{"apple", "banana", "mango", "zebra"}, a);
+            assertArrayEquals(new String[]{"apple", "banana", "mango", "zebra"}, a, "String array not sorted alphabetically");
         }
 
         @Test
@@ -593,7 +593,7 @@ class SortingUtilityTest {
             // Tests string comparison with equal elements
             String[] a = {"dog", "cat", "dog", "ant", "cat"};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new String[]{"ant", "cat", "cat", "dog", "dog"}, a);
+            assertArrayEquals(new String[]{"ant", "cat", "cat", "dog", "dog"}, a, "String array with duplicates not sorted correctly");
         }
 
         @Test
@@ -604,7 +604,7 @@ class SortingUtilityTest {
                     "orange", "mango", "lemon"};
             SortingUtility.shellSort(a);
             assertArrayEquals(new String[]{"apple", "banana", "cherry", "date", "fig",
-                    "grape", "kiwi", "lemon", "mango", "orange"}, a);
+                    "grape", "kiwi", "lemon", "mango", "orange"}, a, "Large string array not sorted correctly");
         }
 
         // -------------------- OTHER COMPARABLE TYPES --------------------
@@ -615,7 +615,7 @@ class SortingUtilityTest {
             // Tests another generic Comparable type
             Double[] a = {3.14, 1.41, 2.71, 0.5};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Double[]{0.5, 1.41, 2.71, 3.14}, a);
+            assertArrayEquals(new Double[]{0.5, 1.41, 2.71, 3.14}, a, "Double array not sorted correctly");
         }
 
         @Test
@@ -624,7 +624,7 @@ class SortingUtilityTest {
             // Tests Character Comparable type
             Character[] a = {'z', 'a', 'm', 'b', 'y'};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Character[]{'a', 'b', 'm', 'y', 'z'}, a);
+            assertArrayEquals(new Character[]{'a', 'b', 'm', 'y', 'z'}, a, "Character array not sorted correctly");
         }
 
         // -------------------- NEGATIVE NUMBER TESTS --------------------
@@ -635,7 +635,7 @@ class SortingUtilityTest {
             // Tests handling of negative numbers
             Integer[] a = {-5, 3, -1, 0, -10, 7, -3};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{-10, -5, -3, -1, 0, 3, 7}, a);
+            assertArrayEquals(new Integer[]{-10, -5, -3, -1, 0, 3, 7}, a, "Array with negative integers not sorted correctly");
         }
 
         @Test
@@ -644,7 +644,7 @@ class SortingUtilityTest {
             // Tests array with only negative numbers
             Integer[] a = {-2, -8, -1, -5, -3};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{-8, -5, -3, -2, -1}, a);
+            assertArrayEquals(new Integer[]{-8, -5, -3, -2, -1}, a, "Array with all negative integers not sorted correctly");
         }
 
         @Test
@@ -653,7 +653,7 @@ class SortingUtilityTest {
             // Tests complete range including zero
             Integer[] a = {5, -3, 0, -7, 2, 0, -1};
             SortingUtility.shellSort(a);
-            assertArrayEquals(new Integer[]{-7, -3, -1, 0, 0, 2, 5}, a);
+            assertArrayEquals(new Integer[]{-7, -3, -1, 0, 0, 2, 5}, a, "Mixed array with positive, negative, and zero not sorted correctly");
         }
 
         // -------------------- NULL HANDLING TESTS --------------------
@@ -665,7 +665,7 @@ class SortingUtilityTest {
             Integer[] a = null;
             assertThrows(NullPointerException.class, () -> {
                 SortingUtility.shellSort(a);
-            });
+            }, "Null array should throw NullPointerException");
         }
     }
 
@@ -690,9 +690,9 @@ class SortingUtilityTest {
             SortingUtility.cocktailShakerSort(a2);
             SortingUtility.shellSort(a3);
 
-            assertArrayEquals(expected, a1);
-            assertArrayEquals(expected, a2);
-            assertArrayEquals(expected, a3);
+            assertArrayEquals(expected, a1, "Gnome sort result doesn't match expected");
+            assertArrayEquals(expected, a2, "Cocktail shaker sort result doesn't match expected");
+            assertArrayEquals(expected, a3, "Shell sort result doesn't match expected");
         }
 
         @Test
@@ -708,9 +708,9 @@ class SortingUtilityTest {
             SortingUtility.cocktailShakerSort(a2);
             SortingUtility.shellSort(a3);
 
-            assertArrayEquals(expected, a1);
-            assertArrayEquals(expected, a2);
-            assertArrayEquals(expected, a3);
+            assertArrayEquals(expected, a1, "Gnome sort result doesn't match expected for strings");
+            assertArrayEquals(expected, a2, "Cocktail shaker sort result doesn't match expected for strings");
+            assertArrayEquals(expected, a3, "Shell sort result doesn't match expected for strings");
         }
 
         @Test
@@ -726,9 +726,9 @@ class SortingUtilityTest {
             SortingUtility.cocktailShakerSort(a2);
             SortingUtility.shellSort(a3);
 
-            assertArrayEquals(expected, a1);
-            assertArrayEquals(expected, a2);
-            assertArrayEquals(expected, a3);
+            assertArrayEquals(expected, a1, "Gnome sort doesn't handle duplicates correctly");
+            assertArrayEquals(expected, a2, "Cocktail shaker sort doesn't handle duplicates correctly");
+            assertArrayEquals(expected, a3, "Shell sort doesn't handle duplicates correctly");
         }
     }
 }
